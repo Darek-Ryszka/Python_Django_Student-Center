@@ -78,3 +78,7 @@ def update_homework(request, pk=None):
 def delete_homework(request, pk=None):
     Homework.objects.get(id=pk).delete()
     return redirect("homework")
+
+
+def youtube(request):
+    return render(request, "dashboard/youtube.html")
