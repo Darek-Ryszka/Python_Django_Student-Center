@@ -24,3 +24,6 @@ class Homework(models.Model):
     description = models.TextField()
     due = models.DateTimeField()
     is_finished = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title
