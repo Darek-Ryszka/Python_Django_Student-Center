@@ -84,7 +84,7 @@ def delete_homework(request, pk=None):
 def youtube(request):
     if request.method == 'POST':
         form = DashboardForm(request.POST)
-        text = request.Post['text']
+        text = request.POST['text']
         video = VideosSearch(text, limit=10)
         result_list = []
         for i in video.result()['result']:
@@ -92,10 +92,10 @@ def youtube(request):
                 'input': text,
                 'title': i['title'],
                 'duration': i['duration'],
-                'thumbnail': i['thumbnail'][0]['url'],
+                'thumbnail': i['thumbnails'][0]['url'],
                 'channel': i['channel']['name'],
                 'link': i['link'],
-                'views': i['viewcount']['short'],
+                'views': i['viewCount']['short'],
                 'published': i['publishedTime'],
             }
             desc = ''
