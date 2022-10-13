@@ -322,3 +322,7 @@ def register(request):
         'form': form
     }
     return render(request, "dashboard/register.html", context)
+
+
+def profile(request):
+    return render(request, "dashboard/profile.html")
