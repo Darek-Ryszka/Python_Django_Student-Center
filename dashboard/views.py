@@ -1,5 +1,5 @@
 import wikipedia
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, HttpResponse
 from .forms import *
 from django.contrib import messages
 from django.views import generic
@@ -246,7 +246,63 @@ def wiki(request):
         return render(request, "dashboard/wiki.html", context)
     else:
         form = DashboardForm()
-        context = {
-            'form': form
-        }
+        context = {'form': form}
     return render(request, "dashboard/wiki.html", context)
+
+
+def conversion(request):
+    if request.method == "POST":
+        form = ConversionForm(request.POST)
+        if request.POST['measurement'] == 'length':
+            measurement_form = ConversionLengthForm()
+            context = {
+                'form': form,
+                'm_form': measurement_form,
+                'input': True
+            }
+            if 'input' in request.POST:
+                first = request.POST['measure1']
+                second = request.POST['measure2']
+                input = request.POST['input']
+                answer = ''
+                if input and int(input) >= 0:
+                    if first == 'mile' and second == 'kilometer':
+                        answer = f'{input} mile = {int(input) * 1.609344} kilometer'
+                if first == 'kilometer' and second == 'mile':
+                    answer = f'{input} kilometer = {int(input) * 0.621371192} mile'
+                context = {
+                    'form': form,
+                    'm_form': measurement_form,
+                    'input': True,
+                    'answer': answer
+                }
+        if request.POST['measurement'] == 'mass':
+            measurement_form = ConversionMassForm()
+            context = {
+                'form': form,
+                'm_form': measurement_form,
+                'input': True
+            }
+            if 'input' in request.POST:
+                first = request.POST['measure1']
+                second = request.POST['measure2']
+                input = request.POST['input']
+                answer = ''
+                if input and int(input) >= 0:
+                    if first == 'pound' and second == 'kilogram':
+                        answer = f'{input} pound = {int(input) * 0.453592} kilogram'
+                if first == 'kilogram' and second == 'pound':
+                    answer = f'{input} kilogram = {int(input) * 2.20462} pound'
+                context = {
+                    'form': form,
+                    'm_form': measurement_form,
+                    'input': True,
+                    'answer': answer
+                }
+    else:
+        form = ConversionForm()
+        context = {
+            'form': form,
+            'input': False,
+        }
+    return render(request, "dashboard/conversion.html", context)
