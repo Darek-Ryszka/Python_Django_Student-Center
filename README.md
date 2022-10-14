@@ -1,9 +1,7 @@
 # Python_Django_Student-Dashboard
 
-Student Dashboard
-
 ## General info
-This project is a simple Snake game using Tkinter library 
+This project is a Web Application for the students at any age, which has help to study.
 
 ## Technologies
 To see all technologies go to requirements.txt
