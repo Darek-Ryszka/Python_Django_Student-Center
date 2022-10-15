@@ -1,4 +1,4 @@
-# Python_Django_Student-Dashboard
+# Python_Django_Student-Center
 
 ## General info
 This project is a Web Application for the students at any age, which has help to study.
@@ -19,7 +19,7 @@ git clone https://github.com/Darek-Ryszka/Python_Django_Student-Dashboard.git
 
 --> Move into the directory where we have the project files : 
 ```bash
-cd Student-Dashboard
+cd Student-Center
 
 ```
 
